@@ -1,2 +1,2 @@
 # pyJSCC
-Sharing code within Joint SuperComputer Center
+Sharing code within the Joint SuperComputer Center
