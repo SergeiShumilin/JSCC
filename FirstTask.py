@@ -1,8 +1,6 @@
-from __future__ import unicode_literals
 from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 from numpy import *
 import matplotlib.pyplot as plt
-from matplotlib import rc
 
 import seaborn
 
@@ -32,13 +30,11 @@ q = arange(1 / 16, 1, 1 / 16)
 # Количество цветов в массиве должно равняться количеству итераций в plotAFunction
 colors = ['#ccccff', '#b3b3ff', '#9999ff', '#8080ff', '#6666ff', '#4d4dff', '#3333ff',
           '#7070db', '#5c5cd6', '#2e2eb8', '#3333cc', '#2929a3', '#24248f', '#1f1f7a', '#0000ff']
-colors2 = ['#ffad99', '#ff9980', '#ff8566', '#ff704d', '#ff5c33', '#ff471a', '#ff3300',
-           '#e62e00', '#cc2900', '#b32400', '#991f00', '#801a00', '#661400', '#ff00ff', '#0000ff']
 
 
 # Функция наносящая множество графиков функции на график
 def plotAFunction(q):
-    i = 0
+
     k = 0
     alpha = 0.2
     for c in q:
@@ -48,27 +44,36 @@ def plotAFunction(q):
         k += 1
         if k == 4:
             ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')
-            ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color='black', linewidth=1.5)  # сам график
+            ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color='black', linewidth=1.7)  # сам график
 
             x = arange(0, 0.250, 0.001)
             ax.fill_between(x, 1 + ((1 - 2 * c) / (c - x)), 0, facecolors='green', alpha=alpha)
             x = arange(0.249, 0.5, 0.001)
-            ax.fill_between(x, 25, 0, facecolors='green', alpha=alpha, label='using vectorization is beneficial')
+            ax.fill_between(x, 25, 0, facecolors='green', alpha=alpha, label='using vectorization is beneficial for $k=4$')
             x = arange(-0.1, c - 0.001, 0.001)
             ax.fill_between(x, 25, 1 + ((1 - 2 * c) / (c - x)), facecolors='red', alpha=alpha,
-                            label='using vectorization is not beneficial')
+                            label='using vectorization is not beneficial for $k=4$')
+            # установить легенду
+            ax.legend(loc='upper left')
 
-        # установить легенду
-        ax.legend(loc='upper left')
-        i += 1
+
 
     # Размеры графика
     plt.ylim(0, 25)
     plt.xlim(0, 0.5)
 
 
-# текст
-plt.text(0.17, 13.0, r'$k = 4$', size=15, rotation=73.)
+# текст на графике
+plt.text(0.035, 14.0, r'$k = 2$', size=15, rotation=73.)
+plt.text(0.11, 14.0, r'$k = 3$', size=15, rotation=73.)
+plt.text(0.18, 14.0, r'$k = 4$', size=15, rotation=73.)
+plt.text(0.255, 14.0, r'$k = 5$', size=15, rotation=75.)
+plt.text(0.33, 14.0, r'$k = 6$', size=15, rotation=80.)
+plt.text(0.40, 14.0, r'$k = 7$', size=15, rotation=80.)
+plt.text(0.44, 1.2, r'$k = 8$', size=15, rotation=0.)
+
+
+
 
 # Тектовое и графическое оформление графика
 plt.title("Evaluation of vectorizing efficiency", fontsize=13)

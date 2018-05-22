@@ -40,8 +40,8 @@ def plotAFunction():
             ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')
             ax.plot(x, calculateFunc(x,j), color='black', linewidth=1.7)  # сам график
 
-            ax.fill_between(x, calculateFunc(x,j), 0, facecolors='red', alpha=alpha,label='using vectorization is not beneficial')
-            ax.fill_between(x, calculateFunc(x,j), 25, facecolors='green', alpha=alpha,label='using vectorization is beneficial')
+            ax.fill_between(x, calculateFunc(x,j), 0, facecolors='red', alpha=alpha,label="using vectorization is not beneficial for $k=4$")
+            ax.fill_between(x, calculateFunc(x,j), 25, facecolors='green', alpha=alpha,label='using vectorization is beneficial for $k=4$')
             ax.legend(loc='upper right')
 
 
