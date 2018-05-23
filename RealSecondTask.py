@@ -40,8 +40,8 @@ def plotAFunction():
             ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')
             ax.plot(x, calculateFunc(x,j), color='black', linewidth=1.7)  # сам график
 
-            ax.fill_between(x, calculateFunc(x,j), 0, facecolors='red', alpha=alpha,label="using vectorization is not beneficial for $k=4$")
-            ax.fill_between(x, calculateFunc(x,j), 25, facecolors='green', alpha=alpha,label='using vectorization is beneficial for $k=4$')
+            ax.fill_between(x, calculateFunc(x,j), 0, alpha=alpha,label="using vectorization is not beneficial for $k=4$",cmap="pink")
+            ax.fill_between(x, calculateFunc(x,j), 25, facecolors=(0.1, 0.2, 0.5, 0.3), alpha=alpha,label='using vectorization is beneficial for $k=4$')
             ax.legend(loc='upper right')
 
 
@@ -56,8 +56,13 @@ plt.xlabel(r'$p_2$', fontsize=15)
 plt.ylabel(r'$\frac{t_2}{t_1}$', fontsize=20, rotation=0)
 ax.set_facecolor('w')  ##f0f5f5
 
-ax.grid(True)
 
+
+
+
+
+
+ax.grid(True)
 plt.text(0.112, 6.48, r'$k = 2$', size=15, rotation=-45.)
 plt.text(0.07, 4.9, r'$k = 3$', size=15, rotation=-45.)
 
