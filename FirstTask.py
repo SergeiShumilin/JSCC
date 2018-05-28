@@ -31,6 +31,11 @@ q = arange(1 / 16, 1, 1 / 16)
 colors = ['#ccccff', '#b3b3ff', '#9999ff', '#8080ff', '#6666ff', '#4d4dff', '#3333ff',
           '#7070db', '#5c5cd6', '#2e2eb8', '#3333cc', '#2929a3', '#24248f', '#1f1f7a', '#0000ff']
 
+colorsGREEN = ['#ccffdd', '#b3ffcc', '#99ffbb', '#80ffaa', '#66ff99', '#4dff88', '#33ff77',
+          '#1aff66', '#00ff55', '#00e64d', '#00cc44', '#00b33c', '#009933', '#00802b', '#006622']
+
+colorsRED = ['#ffd6cc', '#ffc2b3', '#ffad99', '#ff9980', '#ff8566', '#ff704d', '#ff5c33',
+          '#ff471a', '#ff3300', '#e62e00', '#cc2900', '#b32400', '#991f00', '#801a00', '#661400']
 
 # Функция наносящая множество графиков функции на график
 def plotAFunction(q):
@@ -42,25 +47,66 @@ def plotAFunction(q):
         x = arange(0, c, 0.001)
         ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color='black', linewidth=1)  # сам график
         k += 1
+
         if k == 4:
             ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')
             ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color='black', linewidth=1.7)  # сам график
 
+            """
             x = arange(0, 0.250, 0.001)
             ax.fill_between(x, 1 + ((1 - 2 * c) / (c - x)), 0, facecolors='green', alpha=alpha)
             x = arange(0.249, 0.5, 0.001)
-            ax.fill_between(x, 25, 0, facecolors='green', alpha=alpha, label='using vectorization is beneficial for $k=4$')
+            ax.fill_between(x, 25, 0, facecolors='green', alpha=alpha,
+                            label='using vectorization is beneficial for $k=4$')
             x = arange(-0.1, c - 0.001, 0.001)
             ax.fill_between(x, 25, 1 + ((1 - 2 * c) / (c - x)), facecolors='red', alpha=alpha,
-                            label='using vectorization is not beneficial for $k=4$')
-            # установить легенду
-            ax.legend(loc='upper left')
+                            label='using vectorization is not beneficial for $k=4$')"""
 
 
 
-    # Размеры графика
-    plt.ylim(0, 25)
-    plt.xlim(0, 0.5)
+
+x = arange(-0.1, q[3] - 0.001, 0.001)
+ax.fill_between(x, 25, 1 + ((1 - 2 * q[3]) / (q[3] - x)), facecolors=colorsRED[0])
+
+x = arange(-0.1, q[2] - 0.001, 0.001)
+ax.fill_between(x, 25, 1 + ((1 - 2 * q[2]) / (q[2] - x)), facecolors=colorsRED[2])
+
+x = arange(-0.1, q[1] - 0.001, 0.001)
+ax.fill_between(x, 25, 1 + ((1 - 2 * q[1]) / (q[1] - x)), facecolors=colorsRED[4])
+
+x = arange(-0.1, q[0] - 0.001, 0.001)
+ax.fill_between(x, 25, 1 + ((1 - 2 * q[0]) / (q[0] - x)), facecolors=colorsRED[6])
+
+
+
+
+x = arange(0, q[3], 0.001)
+ax.fill_between(x, 1 + ((1 - 2 * q[3]) / (q[3] - x)), 0, facecolors=colorsGREEN[0])
+x = arange(q[3], 0.5, 0.001)
+ax.fill_between(x, 25, 0, facecolors=colorsGREEN[0])
+
+x = arange(0, q[4], 0.001)
+ax.fill_between(x, 1 + ((1 - 2 * q[4]) / (q[4] - x)), 0, facecolors=colorsGREEN[2])
+x = arange(q[4], 0.5, 0.001)
+ax.fill_between(x, 25, 0, facecolors=colorsGREEN[2])
+
+x = arange(0, q[5], 0.001)
+ax.fill_between(x, 1 + ((1 - 2 * q[5]) / (q[5] - x)), 0, facecolors=colorsGREEN[4])
+x = arange(q[5], 0.5, 0.001)
+ax.fill_between(x, 25, 0, facecolors=colorsGREEN[4])
+
+x = arange(0, q[6], 0.001)
+ax.fill_between(x, 1 + ((1 - 2 * q[6]) / (q[6] - x)), 0, facecolors=colorsGREEN[6])
+x = arange(q[6], 0.5, 0.001)
+ax.fill_between(x, 25, 0, facecolors=colorsGREEN[6])
+
+
+# установить легенду
+ax.legend(loc='upper left')
+
+# Размеры графика
+plt.ylim(0, 25)
+plt.xlim(0, 0.5)
 
 
 # текст на графике
