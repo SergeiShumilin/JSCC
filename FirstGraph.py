@@ -1,15 +1,27 @@
-"""Code for the first part of the article on parallel computing
-Docstyle conventions from PEP 257"""
+"""Plot a number of function with filled gaps between.
 
-from matplotlib.ticker import MultipleLocator, FormatStrFormatter
-from numpy import *
+This code make creating of multifunctional plot easier to depict.
+It filling the gaps between multiple functions using a colormaps
+defined in matplotlib
+
+"""
+
 import matplotlib.pyplot as plt
 from matplotlib import cm
+from matplotlib.ticker import MultipleLocator, FormatStrFormatter
+from numpy import *
+
 
 def plotAFunction(q, k, color):
-    """Plots the number of asymptotes according to the q array,
-     Plots the function
-     Plots the k-th function thicker then others"""
+    """Plot the number of asymptotes and functions according to the q array.
+
+    Plots the k-th function thicker then others.
+
+    :param q array: array of values for x axis
+    :param k int: number of function which need to be plotted thicker then others
+    :param color string: desired color of functions
+
+     """
     i = 0
     for c in q:
         ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color=color)  # asymptote
@@ -23,10 +35,15 @@ def plotAFunction(q, k, color):
 
 
 def fillAreas():
+    """Fill areas between graphs with different colors.
+
+    Colors are selected by defining colormap from matplotlib set
+
+    """
     for i in range(3, 7, 1):
         x1 = arange(0, q[i], 0.001)
         ax.fill_between(x1, 1 + ((1 - 2 * q[i]) / (q[i] - x1)), 0, facecolors=cm.Greens(40 + i * 30))
-        x2 = arange(q[i], 0.5, 0.001)
+        x2 = arange(q[i], 0.51, 0.001)
         ax.fill_between(x2 - 0.001, 25, 0, facecolors=cm.Greens(40 + i * 30))
     for i in range(3, 0, -1):
         x3 = arange(-0.1, q[i] - 0.001, 0.001)
@@ -34,11 +51,13 @@ def fillAreas():
 
 
 def setXValues(xax, locator, formatterPattern):
-    """Sets the values for the x axis
-    classes Formatter and Locator are implemented for all x labels
-    Locator sets the multiplicity of x values
-    Formatter - the form of x values"""
+    """Set the values for the x axis.
 
+    :param xax Axis: the desired axis
+    :param locator: locator sets the multiplicity of x values
+    :param formatterPattern: the form of x values
+
+    """
     majorLocator = MultipleLocator(locator)
     majorFormatter = FormatStrFormatter(formatterPattern)
     xax.set_major_locator(majorLocator)
@@ -46,18 +65,29 @@ def setXValues(xax, locator, formatterPattern):
 
 
 def setTickLabels(xax, numberOfLabels, size):
-    """Sets and defines ticklabels of the given axis
-     according to the pattern and sets their size"""
-    labels = ['0']
-    for i in range(0, numberOfLabels):
-        s = r'$\frac{{0}}{{1}}$'.format(i, 16)
-        labels.append(s)
+    """Set ticklabels of the given axis.
+
+    For rendering of x labels the TEX syntax is used.
+
+    :param xax Axis: The axes for which the labels are set
+    :param numberOfLabels int: the desired number of labels to put into
+            labels array
+    :param size int: desired size of labels
+
+    """
+    labels = ['0', '0']
+    for i in range(1, numberOfLabels):
+        labels.append(r'$\frac{{{}}}{{{}}}$'.format(i, 'v'))
+    print(labels)
     xax.set_ticklabels(labels)
     for label in xax.get_ticklabels():
         label.set_fontsize(size)
 
 
 def plotText():
+    """Plot the inscription for the graphs on the plot.
+
+    """
     plt.text(0.035, 14.0, r'$k = 2$', size=15, rotation=73.)
     plt.text(0.11, 14.0, r'$k = 3$', size=15, rotation=73.)
     plt.text(0.18, 14.0, r'$k = 4$', size=15, rotation=73.)
@@ -68,10 +98,12 @@ def plotText():
 
 
 def addInscription():
+    """Add inscriptions to graph: title, labels for x and y axes.
+
+    """
     plt.title("Evaluation of vectorizing efficiency", fontsize=13)
     plt.xlabel(r'$p_2$', fontsize=15)
-    plt.ylabel(r'$\frac{t_2}{t_1}$', fontsize=20, rotation=0)
-
+    plt.ylabel(r'$\frac{t_2}{t_1}$', labelpad=13, fontsize=20, rotation=0)
 
 
 fig = plt.figure()
@@ -87,4 +119,5 @@ setTickLabels(xax, 16, 14)
 plotAFunction(q, 4, 'black')
 plotText()
 fillAreas()
+addInscription()
 plt.show()
