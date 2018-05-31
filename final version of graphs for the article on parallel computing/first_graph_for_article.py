@@ -1,4 +1,4 @@
-"""Plot a number of function with filled gaps between.
+"""Plot a number of function with filled gaps between.2
 
 This code makes creating of multifunctional plot easier to depict.
 It filling the gaps between multiple functions using a colormaps
