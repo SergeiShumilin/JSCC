@@ -1,5 +1,6 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
+@author: RichardBronosky
 """This module's docstring summary line.
 This is a multi-line docstring. Paragraphs are separated with blank lines.
 Lines conform to 79-column limit.
