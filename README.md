@@ -1,4 +1,6 @@
 # pyJSCC
 Sharing code within the Joint SuperComputer Center
  
- file FirstTask contains the experimental graphic for testing features of matplotlib
++------------------------------+----------------------------------------------------------------------------------+
+| code examples PEP8 and reST  |  code examples of both PEP8 and reST standards with links to the official pages  |
++------------------------------+----------------------------------------------------------------------------------+
