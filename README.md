@@ -1,7 +1,7 @@
 # **pyJSCC**
 **Sharing code within the Joint SuperComputer Center**
 
-## Content descrption
+## Content description
 
 Folder| Description
 ------|-------------
