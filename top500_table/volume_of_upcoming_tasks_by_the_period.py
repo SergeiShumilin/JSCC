@@ -9,7 +9,7 @@ from numpy.matlib import randn
 
 conn_string = "host='localhost' dbname='temp-2017' user='postgres' password='16a10a'"
 conn = psycopg2.connect(conn_string)
-res = pd.read_sql("SELECT indate, ntime FROM mvs100k.tasks where indate is between 2017-03-01 and 2017-03-07",conn,index_col='indate',parse_dates=True)
+res = pd.read_sql("SELECT indate, ntime FROM mvs100k.tasks",conn,index_col='indate',parse_dates=True)
 
 
 
