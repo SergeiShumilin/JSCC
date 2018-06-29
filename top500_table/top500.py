@@ -8,7 +8,7 @@ from top500.org and defines the following indicators:
 
     a) The total peak performance (Rpeak [TFlop/s]) of the SC in a given country.
 
-    б) The ratio of peak performance of SCs based on accelerators to the entire
+    b) The ratio of peak performance of SCs based on accelerators to the entire
     performance of all SC in the given country.
 
 How To Use This Module

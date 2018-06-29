@@ -1,0 +1,242 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>top500 module &#8212; dfs  documentation</title>
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">dfs  documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-top500">
+<span id="top500-module"></span><h1>top500 module<a class="headerlink" href="#module-top500" title="Permalink to this headline">¶</a></h1>
+<p>This module retrieves information from the top500 supercomputers (SC) table
+from top500.org and defines the following indicators:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li>The total peak performance (Rpeak [TFlop/s]) of the SC in a given country.</li>
+</ol>
+<p>b) The ratio of peak performance of SCs based on accelerators to the entire
+performance of all SC in the given country.</p>
+</div></blockquote>
+<div class="section" id="how-to-use-this-module">
+<h2>How To Use This Module<a class="headerlink" href="#how-to-use-this-module" title="Permalink to this headline">¶</a></h2>
+<p>(See the individual classes, methods, and attributes for details.)</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Download the TOP500 exel file on your computer.</li>
+<li>Convert it to the .csv format (Use comma separation, pay attention to encoding).</li>
+<li>In the get_the_full_table() function define the path to the .csv table.</li>
+<li>Use get_the_countrys_total_peak_performance(region) function to get the total peak performance (Rpeak [TFlop/s])</li>
+</ol>
+<blockquote>
+<div><dl class="docutils">
+<dt>of the SCs in the given country.</dt>
+<dd><dl class="first last docutils">
+<dt>The countries you can get the info about (The :arg region must be exactly similar as shown below:</dt>
+<dd><ol class="first last loweralpha simple">
+<li>‘China’</li>
+<li>‘United States’</li>
+<li>‘EU’ (European Union)</li>
+<li>‘Russia’</li>
+<li>‘Others’.</li>
+</ol>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<ol class="arabic simple" start="5">
+<li>Use get_accelerators_to_entire_performance_ratio(region) function to get the ratio of peak performance of SCs</li>
+</ol>
+<blockquote>
+<div><dl class="docutils">
+<dt>based on accelerators to the entire performance of all SCs in the given country.</dt>
+<dd><dl class="first last docutils">
+<dt>The countries you can get the info about (The :arg region must be exactly similar as shown down:</dt>
+<dd><ol class="first last loweralpha simple">
+<li>‘China’</li>
+<li>‘United States’</li>
+<li>‘EU’ (European Union)</li>
+<li>‘Russia’</li>
+<li>‘Others’.</li>
+</ol>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>6. If you need to calculate the total peak performance over the all top500 list use get_total_peak_performance()
+func.</p>
+</div></blockquote>
+<dl class="function">
+<dt id="top500.get_accelerators_to_entire_performance_ratio">
+<code class="descclassname">top500.</code><code class="descname">get_accelerators_to_entire_performance_ratio</code><span class="sig-paren">(</span><em>region</em><span class="sig-paren">)</span><a class="headerlink" href="#top500.get_accelerators_to_entire_performance_ratio" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the ratio of SCs’ based on accelerators to the whole performance in the given country or region (see p.4 and
+p.5 in the introduction).</p>
+<p>Calculates the ratio of summary peak performance of systems based on accelerators to the whole performance of the
+given country or the region.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>region</strong> – Any of the regions presented in the introduction docs (see p.4 and p.5)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="top500.get_euro_countries_table">
+<code class="descclassname">top500.</code><code class="descname">get_euro_countries_table</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top500.get_euro_countries_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the table that includes only countries-members of the European Union.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="top500.get_other_countries_table">
+<code class="descclassname">top500.</code><code class="descname">get_other_countries_table</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top500.get_other_countries_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the countries which are not the US, China, Russia, the EU member.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="top500.get_region_table">
+<code class="descclassname">top500.</code><code class="descname">get_region_table</code><span class="sig-paren">(</span><em>region</em><span class="sig-paren">)</span><a class="headerlink" href="#top500.get_region_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="top500.get_the_countrys_table">
+<code class="descclassname">top500.</code><code class="descname">get_the_countrys_table</code><span class="sig-paren">(</span><em>country</em><span class="sig-paren">)</span><a class="headerlink" href="#top500.get_the_countrys_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the table with only one country in the ‘Country’ column left.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="top500.get_the_countrys_total_peak_performance">
+<code class="descclassname">top500.</code><code class="descname">get_the_countrys_total_peak_performance</code><span class="sig-paren">(</span><em>region</em><span class="sig-paren">)</span><a class="headerlink" href="#top500.get_the_countrys_total_peak_performance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the total peak performance of all SCs in the given country (:arg region).</p>
+<p>Calculates the summary performance by summarizing the values in the Rpeak [TFlop/s] column in the TOP500 table
+using .sum pandas function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>region</strong> – Any of the regions presented in the introduction docs (see p.4 and p.5)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="top500.get_the_full_table">
+<code class="descclassname">top500.</code><code class="descname">get_the_full_table</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top500.get_the_full_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the top500 table from the path inserted.</p>
+<p>Define the path to the source file in .read_csv method.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="top500.get_total_peak_performance">
+<code class="descclassname">top500.</code><code class="descname">get_total_peak_performance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#top500.get_total_peak_performance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the total peak performance over all the TOP500 list.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="top500.make_notnull_table">
+<code class="descclassname">top500.</code><code class="descname">make_notnull_table</code><span class="sig-paren">(</span><em>full_table</em><span class="sig-paren">)</span><a class="headerlink" href="#top500.make_notnull_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete all rows that contain null values.</p>
+<p>Receives the full .csv table and cleans it up of null values in order to leave only SCs based on
+Accelerator/Co-Processor cores.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>full_table</strong> – table from top500.org in .csv format</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">table which contains only systems based on Accelerator/Co-Processor cores</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">top500 module</a><ul>
+<li><a class="reference internal" href="#how-to-use-this-module">How To Use This Module</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/docs/top500.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">dfs  documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, ss.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+    </div>
+  </body>
+</html>
