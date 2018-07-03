@@ -11,13 +11,13 @@ How To Use This Module
 ======================
 (See the individual classes, methods, and attributes for details.)
 
-1) Use get_table function to get a table from a database.
+1. Use get_table function to get a table from a database.
 
-2) Change or leave default the connection parameters in the get_table signature.
+2. Change or leave default the connection parameters in the get_table signature.
 
-3) Set the `what` param. to indicate what you need to retrieve from the table.
+3. Set the `what` param. to indicate what you need to retrieve from the table.
 
-4) Set the `from_table` to indicate from what table you need to get the info from.
+4. Set the `from_table` to indicate from what table you need to get the info from.
 
 For example: `what`== 'tasks.indate', `from_table` == 'mvs100k.tasks' gives:
 "SELECT tasks.indate FROM mvs100k.tasks"
@@ -47,5 +47,8 @@ def get_table(what ='tasks.indate', from_table='mvs100k.tasks', host='localhost'
     """
     conn_string = "host=" + host + " dbname=" + dbname + " user=" + user + " password=" + password
     with psycopg2.connect(conn_string) as conn:
-        df = pandas.read_sql("SELECT " + what + " FROM " + from_table, conn)
+        try:
+            df = pandas.read_sql("SELECT " + what + " FROM " + from_table, conn)
+        except Exception as e:
+            print("Can't connect to server. Check the input parameters.")
     return df
