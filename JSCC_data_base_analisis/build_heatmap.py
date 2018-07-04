@@ -133,3 +133,6 @@ def pivot_the_dataframe(dataframe):
     pivot_table = dataframe.pivot('week', 'day', "number of launchings")
     days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     return pivot_table[days]
+
+
+make_heatmap()
