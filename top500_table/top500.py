@@ -19,7 +19,7 @@ How To Use This Module
 
     2. Convert it to the .csv format (Use comma separation, pay attention to encoding).
 
-    3. In the get_the_full_table() function define the path to the .csv table.
+    3. In the get_the_full_table(path_to_csv) define the path to the .csv table.
 
     4. Use get_the_countrys_total_peak_performance(region) function to get the total peak performance (Rpeak [TFlop/s])
      of the SCs in the given country.
@@ -48,13 +48,13 @@ __docformat__ = 'restructuredtext'
 import pandas as pd
 
 
-def get_the_full_table():
+def get_the_full_table(path_to_csv = 'TOP500_201806.csv'):
     """
     Return the top500 table from the path inserted.
 
     Define the path to the source file in .read_csv method.
     """
-    top500_table = pd.read_csv('TOP500_201806.csv', sep=',')
+    top500_table = pd.read_csv(path_to_csv, sep=',')
     top500_table.set_index(['Rank'], inplace=True)
     return top500_table
 
