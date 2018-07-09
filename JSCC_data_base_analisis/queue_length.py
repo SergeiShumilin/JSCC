@@ -41,7 +41,6 @@ def get_queue_length_table():
     # Concatenate two dataframes
     queue_length_table = pd.concat([indates, rundates])
 
-    # Sort by date
     queue_length_table = queue_length_table.sort_values(by=['time'])
 
     # Exclude repetitive rows
