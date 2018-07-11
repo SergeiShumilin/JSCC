@@ -58,3 +58,5 @@ def plot_error_codes_bar(system_name_1, system_name_2):
     fig.set_title('Number of completion codes', size=14)
     plt.legend(loc='upper right')
     plt.show()
+
+
