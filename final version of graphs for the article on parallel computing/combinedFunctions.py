@@ -14,7 +14,6 @@ q = arange(1 / 16, 1, 1 / 16)
 def plotFirstGraph():
     q = arange(1 / 16, 1, 1 / 16)
     k = 0
-    alpha = 0.2
     for c in q:
         ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')  # ассимптота
         x = arange(1/16, c, 0.001)
@@ -48,6 +47,10 @@ def fill_area(plot):
     for i in range(1, 8, 1):
         x1 = arange(1/16, 1, 0.001)
         ax.fill_between(x1, 1 + ((1 - 2 * q[i]) / (q[i] - x1)), 0, facecolors=cm.Greens(40 + i * 30))
+        ax.fill_between(x1, 1 + ((1 - 2 * q[i]) / (q[i] - x1)), 0, facecolors=cm.Greens(40 + i * 30))
+
+def fill_square_areas():
+    pass
 
 
 
