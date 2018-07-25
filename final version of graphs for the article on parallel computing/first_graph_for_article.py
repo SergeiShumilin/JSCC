@@ -105,19 +105,19 @@ def add_inscription():
     plt.xlabel(r'$p_2$', fontsize=15)
     plt.ylabel(r'$\frac{t_2}{t_1}$', labelpad=13, fontsize=20, rotation=0)
 
+def plot_first_graph():
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    xax = ax.xaxis  # get x axis
+    plt.ylim(0, 25)
+    plt.xlim(0, 0.5)
+    # Лист значений параметра q
+    q = arange(1 / 16, 1, 1 / 16)
 
-fig = plt.figure()
-ax = fig.add_subplot(111)
-xax = ax.xaxis  # get x axis
-plt.ylim(0, 25)
-plt.xlim(0, 0.5)
-# Лист значений параметра q
-q = arange(1 / 16, 1, 1 / 16)
-
-set_x_values(xax, 1 / 16, '%.3f')
-set_tick_labels(xax, 16, 14)
-plot_a_function(q, 4, 'black')
-plot_text()
-fill_areas()
-add_inscription()
-plt.show()
+    set_x_values(xax, 1 / 16, '%.3f')
+    set_tick_labels(xax, 16, 14)
+    plot_a_function(q, 4, 'black')
+    plot_text()
+    fill_areas()
+    add_inscription()
+    plt.show()
