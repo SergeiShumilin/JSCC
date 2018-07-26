@@ -4,6 +4,10 @@ This code makes creating of multifunctional plot easier to depict.
 It filling the gaps between multiple functions using a colormaps
 defined in matplotlib
 
+How to use this module
+=======================
+1. Call `plot_a_function` with following set of parameters:
+
 """
 
 import matplotlib.pyplot as plt
@@ -12,7 +16,7 @@ from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 from numpy import *
 
 
-def plot_a_function(q, k, color):
+def plot_a_function(ax,q, k, color):
     """Plot the number of asymptotes and functions according to the q array.
 
     Plots the k-th function thicker then others.
@@ -116,8 +120,9 @@ def plot_first_graph():
 
     set_x_values(xax, 1 / 16, '%.3f')
     set_tick_labels(xax, 16, 14)
-    plot_a_function(q, 4, 'black')
+    plot_a_function(ax,q, 4, 'black')
     plot_text()
     fill_areas()
     add_inscription()
     plt.show()
+
