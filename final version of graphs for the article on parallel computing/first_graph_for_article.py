@@ -1,13 +1,14 @@
-"""Plot a number of function with filled gaps between.2
+"""Plot a number of function with filled gaps between.
 
 This code makes creating of multifunctional plot easier to depict.
-It filling the gaps between multiple functions using a colormaps
-defined in matplotlib
+It's filling the gaps between multiple functions using a colormaps
+defined in matplotlib.
 
 How to use this module
 =======================
-1. Call `plot_a_function` with following set of parameters:
+1. Call `plot_first_graph` with a set of parameters (see the function for description)
 
+For example: plot_first_graph(3, cm.Greens, cm.Reds)
 """
 
 import matplotlib.pyplot as plt
@@ -16,42 +17,95 @@ from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 from numpy import *
 
 
-def plot_a_function(ax,q, k, color):
+def plot_first_graph(k, colormap1, colormap2):
+    """Plot the number of graphs with color filling.
+
+    :param k: the k value (makes the k-th graph thicker and separates the color of filling on the plot)
+    :param colormap1: matplotlib colormap for the right side https://matplotlib.org/users/colormaps.html
+    :param colormap2: colormap for the left side https://matplotlib.org/users/colormaps.html
+    """
+    fig = plt.figure()
+
+    # The first plot
+    ax = fig.add_subplot(111)
+    xax = ax.xaxis  # get x axis
+
+    plt.ylim(0, 25)
+    plt.xlim(0, 0.5)
+
+    # List of values of q parameter
+    q = arange(1 / 16, 1, 1 / 16)
+
+    # Set the tick labels of the x axis
+    set_x_values(xax, 1 / 16, '%.3f')
+    set_tick_labels(xax, 16, 14)
+
+    plot_a_function(ax, q, k, 'black')
+    plot_text()
+
+    fill_areas(ax, q, k, colormap1, colormap2)
+
+    # Title and axis names
+    add_inscription()
+
+    plt.show()
+
+
+def plot_a_function(ax, q, k, color):
     """Plot the number of asymptotes and functions according to the q array.
 
     Plots the k-th function thicker then others.
 
     :param q: array of values for x axis
-    :param k: the exact number of function which need to be plotted thicker then others
+    :param k: the exact number of function which needs to be plotted thicker then others
     :param color: desired color of functions
 
      """
     i = 0
+
     for c in q:
-        ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color=color)  # asymptote
+        # asymptote
+        ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color=color)
+
+        # function graph
         x = arange(0, c, 0.001)
-        ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color=color, linewidth=1)  # function graph
+        ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color=color, linewidth=1)
         i += 1
 
+        # highlight the k-th curve
         if i == k:
             ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')  # thicker asymptote
             ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color=color, linewidth=1.7)  # thicker function graph
 
 
-def fill_areas():
-    """Fill areas between graphs with different colors.
+def fill_areas(ax, q_list, k, colormap1, colormap2):
+    """Fill areas on the `ax` plot.
 
-    Colors are selected by defining colormap from matplotlib set
+    The parameter `n` in `colormap(n)` defines the color by selecting it from [0,255] array.
+    It's calculated by the expression `a + i*b` there `a` and `b` can be changed in the
+     `fill_between` list of arguments.
+
+    :param ax: plot
+    :param q_list: list of `q` values
+    :param k:  highlights the k-th graph
+    :param colormap1:  matplotlib colormap for the right side https://matplotlib.org/users/colormaps.html
+    :param colormap2:  matplotlib colormap for the left side https://matplotlib.org/users/colormaps.html
 
     """
-    for i in range(3, 7, 1):
-        x1 = arange(0, q[i], 0.001)
-        ax.fill_between(x1, 1 + ((1 - 2 * q[i]) / (q[i] - x1)), 0, facecolors=cm.Greens(40 + i * 30))
-        x2 = arange(q[i], 0.51, 0.001)
+    # fill the green area...
+    for i in range(k - 1, 7, 1):
+        # under the curve itself
+        x1 = arange(0, q_list[i], 0.001)
+        ax.fill_between(x1, 1 + ((1 - 2 * q_list[i]) / (q_list[i] - x1)), 0, facecolors=colormap1(40 + i * 30))
+
+        # the rectangle next to the curve
+        x2 = arange(q_list[i], 0.51, 0.001)
         ax.fill_between(x2 - 0.001, 25, 0, facecolors=cm.Greens(40 + i * 30))
-    for i in range(3, 0, -1):
-        x3 = arange(-0.1, q[i] - 0.001, 0.001)
-        ax.fill_between(x3, 25, 1 + ((1 - 2 * q[i]) / (q[i] - x3)), facecolors=cm.Reds(180 - i * 30))
+
+    # fill the red area
+    for i in range(k - 1, 0, -1):
+        x3 = arange(-0.1, q_list[i] - 0.001, 0.001)
+        ax.fill_between(x3, 25, 1 + ((1 - 2 * q_list[i]) / (q_list[i] - x3)), facecolors=colormap2(180 - i * 30))
 
 
 def set_x_values(xax, locator, formatter_pattern):
@@ -108,21 +162,4 @@ def add_inscription():
     plt.title("Evaluation of vectorizing efficiency", fontsize=13)
     plt.xlabel(r'$p_2$', fontsize=15)
     plt.ylabel(r'$\frac{t_2}{t_1}$', labelpad=13, fontsize=20, rotation=0)
-
-def plot_first_graph():
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    xax = ax.xaxis  # get x axis
-    plt.ylim(0, 25)
-    plt.xlim(0, 0.5)
-    # Лист значений параметра q
-    q = arange(1 / 16, 1, 1 / 16)
-
-    set_x_values(xax, 1 / 16, '%.3f')
-    set_tick_labels(xax, 16, 14)
-    plot_a_function(ax,q, 4, 'black')
-    plot_text()
-    fill_areas()
-    add_inscription()
-    plt.show()
 
