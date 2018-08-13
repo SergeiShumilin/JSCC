@@ -17,7 +17,7 @@ from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 from numpy import *
 
 
-def plot_first_graph(k, colormap1, colormap2):
+def plot_first_graph(k, colormap1, colormap2,n):
     """Plot the number of graphs with color filling.
 
     :param k: the k value (makes the k-th graph thicker and separates the color of filling on the plot)
@@ -40,10 +40,10 @@ def plot_first_graph(k, colormap1, colormap2):
     set_x_values(xax, 1 / 16, '%.3f')
     set_tick_labels(xax, 16, 14)
 
-    plot_a_function(ax, q, k, 'black')
-    plot_text()
+    plot_a_function(ax, q, k, 'black',n)
+    plot_text(n)
 
-    fill_areas(ax, q, k, colormap1, colormap2)
+    fill_areas(ax, q, k, colormap1, colormap2,n)
 
     # Title and axis names
     add_inscription()
@@ -51,7 +51,7 @@ def plot_first_graph(k, colormap1, colormap2):
     plt.show()
 
 
-def plot_a_function(ax, q, k, color):
+def plot_a_function(ax, q, k, color,n):
     """Plot the number of asymptotes and functions according to the q array.
 
     Plots the k-th function thicker then others.
@@ -65,20 +65,21 @@ def plot_a_function(ax, q, k, color):
 
     for c in q:
         # asymptote
-        ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color=color)
+        if (i<n):
+            ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color=color)
 
-        # function graph
-        x = arange(0, c, 0.001)
-        ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color=color, linewidth=1)
-        i += 1
+            # function graph
+            x = arange(0, c, 0.001)
+            ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color=color, linewidth=1)
+            i += 1
 
-        # highlight the k-th curve
-        if i == k:
-            ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')  # thicker asymptote
-            ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color=color, linewidth=1.7)  # thicker function graph
+            # highlight the k-th curve
+            if i == k:
+                ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')  # thicker asymptote
+                ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color=color, linewidth=1.7)  # thicker function graph
 
 
-def fill_areas(ax, q_list, k, colormap1, colormap2):
+def fill_areas(ax, q_list, k, colormap1, colormap2,n):
     """Fill areas on the `ax` plot.
 
     The parameter `n` in `colormap(n)` defines the color by selecting it from [0,255] array.
@@ -93,14 +94,14 @@ def fill_areas(ax, q_list, k, colormap1, colormap2):
 
     """
     # fill the green area...
-    for i in range(k - 1, 7, 1):
+    for i in range(k - 1, n, 1):
         # under the curve itself
         x1 = arange(0, q_list[i], 0.001)
         ax.fill_between(x1, 1 + ((1 - 2 * q_list[i]) / (q_list[i] - x1)), 0, facecolors=colormap1(40 + i * 30))
 
         # the rectangle next to the curve
         x2 = arange(q_list[i], 0.51, 0.001)
-        ax.fill_between(x2 - 0.001, 25, 0, facecolors=cm.Greens(40 + i * 30))
+        ax.fill_between(x2 - 0.001, 25, 0, facecolors=colormap1(40 + i * 30))
 
     # fill the red area
     for i in range(k - 1, 0, -1):
@@ -136,18 +137,17 @@ def set_tick_labels(xax, number_of_labels, size):
     labels = ['0', '0']
     for i in range(1, number_of_labels):
         labels.append(r'$\frac{{{}}}{{{}}}$'.format(i, 'v'))
-    print(labels)
     xax.set_ticklabels(labels)
     for label in xax.get_ticklabels():
         label.set_fontsize(size)
 
 
-def plot_text():
+def plot_text(n):
     """Plot the inscription for the graphs on the plot.
 
     """
     plt.text(0.035, 14.0, r'$k = 2$', size=15, rotation=73.)
-    plt.text(0.11, 14.0, r'$k = 3$', size=15, rotation=73.)
+    plt.text(0.11, 14.0, r'$k = 3$',size=15, rotation=73.)
     plt.text(0.18, 14.0, r'$k = 4$', size=15, rotation=73.)
     plt.text(0.255, 14.0, r'$k = 5$', size=15, rotation=75.)
     plt.text(0.33, 14.0, r'$k = 6$', size=15, rotation=80.)

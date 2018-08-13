@@ -59,6 +59,7 @@ def plot_asympthotes(plot, x_values):
 
 def plot_first_graph(plot, q_values, thicker_the_curve):
     k = 0
+    print(type(q_values))
     for q in q_values:
         x = arange(1 / 16, q, 0.001)
         plot.plot(x, 1 + ((1 - 2 * q) / (q - x)), color='black', linewidth=1)  # сам график
