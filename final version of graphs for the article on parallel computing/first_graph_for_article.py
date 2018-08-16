@@ -76,7 +76,7 @@ def plot_a_function(ax, q, k, color,n):
             # highlight the k-th curve
             if i == k:
                 ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')  # thicker asymptote
-                ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color=color, linewidth=1.7)  # thicker function graph
+                ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color=color, linewidth=2)  # thicker function graph
 
 
 def fill_areas(ax, q_list, k, colormap1, colormap2,n):
@@ -97,16 +97,16 @@ def fill_areas(ax, q_list, k, colormap1, colormap2,n):
     for i in range(k - 1, n, 1):
         # under the curve itself
         x1 = arange(0, q_list[i], 0.001)
-        ax.fill_between(x1, 1 + ((1 - 2 * q_list[i]) / (q_list[i] - x1)), 0, facecolors=colormap1(40 + i * 30))
+        ax.fill_between(x1, 1 + ((1 - 2 * q_list[i]) / (q_list[i] - x1)), 0, facecolors=colormap1(0 + i * 28))
 
         # the rectangle next to the curve
         x2 = arange(q_list[i], 0.51, 0.001)
-        ax.fill_between(x2 - 0.001, 25, 0, facecolors=colormap1(40 + i * 30))
+        ax.fill_between(x2 - 0.001, 25, 0, facecolors=colormap1(0 + i * 28))
 
     # fill the red area
     for i in range(k - 1, 0, -1):
         x3 = arange(-0.1, q_list[i] - 0.001, 0.001)
-        ax.fill_between(x3, 25, 1 + ((1 - 2 * q_list[i]) / (q_list[i] - x3)), facecolors=colormap2(180 - i * 30))
+        ax.fill_between(x3, 25, 1 + ((1 - 2 * q_list[i]) / (q_list[i] - x3)), facecolors=colormap2(1 - i * 30))
 
 
 def set_x_values(xax, locator, formatter_pattern):

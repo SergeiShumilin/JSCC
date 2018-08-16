@@ -93,9 +93,9 @@ def fill_area(subplot, colormap):
     q = arange(1 / 16, 1, 1 / 16)
     for i in range(1, 8, 1):
         x1 = arange(1 / 16, 1, 0.0001)
-        subplot.fill_between(x1, 1 + ((1 - 2 * q[i]) / (q[i] - x1)), 0, facecolors=colormap(40 + i * 30))
+        subplot.fill_between(x1, 1 + ((1 - 2 * q[i]) / (q[i] - x1)), 0, facecolors=colormap(0 + i * 30)) #40 + i * 30
         x1 = arange(q[i], 1, 0.001)
-        subplot.fill_between(x1 - 0.0001, 25, 0, facecolors=colormap(40 + i * 30))
+        subplot.fill_between(x1 - 0.0001, 25, 0, facecolors=colormap(0 + i * 30)) #40 + i * 30
 
 
 def fill_third_graph(subplot, colormap):
@@ -103,7 +103,7 @@ def fill_third_graph(subplot, colormap):
     for i in range(1, 8, 1):
         t = arange(2, 17, 1)
         x = arange(0.00001, 1 / 16, 0.00001)
-        subplot.fill_between(x, calculateFunc(x, t[j]), 0, facecolors=colormap(40 + i * 30))
+        subplot.fill_between(x, calculateFunc(x, t[j]), 0, facecolors=colormap(0 + i * 30))#40 + i * 30
         j += 1
 
 
