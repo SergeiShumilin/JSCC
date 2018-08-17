@@ -8,7 +8,7 @@ How to use this module
 =======================
 1. Call `plot_second_graph` with a set of parameters (see the function for description)
 
-For example: plot_second_graph(3, cm.Greens, cm.Reds)
+For example: plot_second_graph(3, cm.Greys, cm.Greys,6,80,0)
 """
 
 import matplotlib.pyplot as plt
