@@ -8,7 +8,8 @@ How to use this module
 =======================
 1. Call `plot_third_graph` defining the main parameters (see function description for details)
 
-For example: `plot_third_graph(4, cm.Reds(120), cm.Greens, [(0.1, 14.0, r'$k = 2$', 15, 73.)])`
+For example: plot_third_graph(4, cm.Greys(0), cm.Greys, [(0.105, 14.0, r'$k = 2$', 15, 73.),
+                                                            (0.177, 14.0, r'$k = 3$', 15, 73.)])
 """
 
 from numpy import *
@@ -64,9 +65,9 @@ def plot_first_graph(plot, q_values, thicker_the_curve):
         x = arange(1 / 16, q, 0.001)
         plot.plot(x, 1 + ((1 - 2 * q) / (q - x)), color='black', linewidth=1)  # сам график
         k += 1
-        if k == thicker_the_curve:
-            plot.axvline(x=q, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')
-            plot.plot(x, 1 + ((1 - 2 * q) / (q - x)), color='black', linewidth=1.7)
+#        if k == thicker_the_curve:
+#            plot.axvline(x=q, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')
+#            plot.plot(x, 1 + ((1 - 2 * q) / (q - x)), color='black', linewidth=1.7)
 
 
 def plot_second_graph(plot, thicken_the_curve):
@@ -80,9 +81,9 @@ def plot_second_graph(plot, thicken_the_curve):
         plot.plot(x, calculateFunc(x, t[j]), color='black', linewidth=1)
 
         j += 1
-        if j == thicken_the_curve:
-            plot.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')
-            plot.plot(x, calculateFunc(x, j), color='black', linewidth=1.7)
+#        if j == thicken_the_curve:
+#            plot.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')
+#            plot.plot(x, calculateFunc(x, j), color='black', linewidth=1.7)
 
 
 def calculateFunc(x, j):
@@ -124,7 +125,7 @@ def set_tick_labels(subplot):
 
 
 def add_inscription(title_size):
-    plt.title("Evaluation of vectorizing efficiency", fontsize=title_size)
+    #plt.title("Evaluation of vectorizing efficiency", fontsize=title_size)
     plt.xlabel(r'$p_2$', fontsize=15)
     plt.ylabel(r'$\frac{t_2}{t_1}$', labelpad=13, fontsize=20, rotation=0)
 

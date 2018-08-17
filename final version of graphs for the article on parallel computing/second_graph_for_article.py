@@ -39,6 +39,7 @@ def plot_second_graph(k, colormap1, colormap2,n,k1,k2):
     plot_a_function(ax,k, k_array, v, 'black',n)
     fill_areas(ax,k,k_array,v,colormap1,colormap2,n,k1,k2)
     plot_text()
+    add_inscription()
 
     plt.show()
 
@@ -69,8 +70,8 @@ def plot_a_function(ax, i, k_array, v, color,n):
     for j in range(0, n):
         x = arange(0.00001, 0.5, 0.001)
         ax.plot(x, calculate_func(k_array, v, x, j), color=color, linewidth=1)
-        if j == i-2:
-            ax.plot(x, calculate_func(k_array, v,x, j), color=color, linewidth=1.7)
+#        if j == i-2:
+#            ax.plot(x, calculate_func(k_array, v,x, j), color=color, linewidth=1.7)
 
 
 def fill_areas(ax,k,k_array, v, colormap1,colormap2,n,k1,k2):
@@ -102,6 +103,13 @@ def plot_text():
     """Plot the inscription for the graphs on the plot.
 
     """
-    plt.text(0.11, 7, r'$k = 2$', size=15, rotation=-41.)
+    plt.text(0.105, 7.2, r'$k = 2$', size=15, rotation=-41.)
     plt.text(0.072, 5.2, r'$k = 3$', size=15, rotation=-40.)
 
+def add_inscription():
+    """Add inscriptions to graph: title, labels for x and y axes.
+
+    """
+    #plt.title("Evaluation of vectorizing efficiency", fontsize=13)
+    plt.xlabel(r'$p_2$', fontsize=15)
+    plt.ylabel(r'$\frac{t_2}{t_1}$', labelpad=13, fontsize=20, rotation=0)

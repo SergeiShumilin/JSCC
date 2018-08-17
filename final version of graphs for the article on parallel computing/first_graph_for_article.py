@@ -74,9 +74,9 @@ def plot_a_function(ax, q, k, color,n):
             i += 1
 
             # highlight the k-th curve
-            if i == k:
-                ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')  # thicker asymptote
-                ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color=color, linewidth=2)  # thicker function graph
+#            if i == k:
+#                ax.axvline(x=c, linestyle="dashed", dashes=(20, 8), linewidth=0.5, color='black')  # thicker asymptote
+#                ax.plot(x, 1 + ((1 - 2 * c) / (c - x)), color=color, linewidth=2)  # thicker function graph
 
 
 def fill_areas(ax, q_list, k, colormap1, colormap2,n):
@@ -147,7 +147,7 @@ def plot_text(n):
 
     """
     plt.text(0.035, 14.0, r'$k = 2$', size=15, rotation=73.)
-    plt.text(0.11, 14.0, r'$k = 3$',size=15, rotation=73.)
+    plt.text(0.105, 14.0, r'$k = 3$',size=15, rotation=73.)
     plt.text(0.18, 14.0, r'$k = 4$', size=15, rotation=73.)
     plt.text(0.255, 14.0, r'$k = 5$', size=15, rotation=75.)
     plt.text(0.33, 14.0, r'$k = 6$', size=15, rotation=80.)
@@ -159,7 +159,7 @@ def add_inscription():
     """Add inscriptions to graph: title, labels for x and y axes.
 
     """
-    plt.title("Evaluation of vectorizing efficiency", fontsize=13)
+    #plt.title("Evaluation of vectorizing efficiency", fontsize=13)
     plt.xlabel(r'$p_2$', fontsize=15)
     plt.ylabel(r'$\frac{t_2}{t_1}$', labelpad=13, fontsize=20, rotation=0)
 
